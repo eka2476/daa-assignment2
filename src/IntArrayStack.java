@@ -1,37 +1,45 @@
-public class IntArrayStack implements IntStack{
-    // uses IntArray as back-end
+public class IntArrayStack implements IntStack {
+    private IntArray array;
 
-    public IntArrayStack(){
+    public IntArrayStack() {
         // creates empty stack
+        array = new IntArray();
     }
 
     @Override
     public void push(int value) {
         // pushes value on top of stack
+        array.add(value);
     }
 
     @Override
     public int pop() {
         // pops a value from top of stack
-        return 0;
+        if (isEmpty()) {
+            throw new IllegalStateException("Stack is empty");
+        }
+        return array.remove(array.size() - 1);
     }
 
     @Override
     public int peek() {
         // returns the value from top of stack without removing it
-        return 0;
+        if (isEmpty()) {
+            throw new IllegalStateException("Stack is empty");
+        }
+        return array.get(array.size() - 1);
     }
 
     @Override
     public int size() {
         // returns the size of the stack
-        return 0;
+        return array.size();
     }
 
     @Override
     public boolean isEmpty() {
         // returns whether the stack is empty
-        return false;
+        return array.isEmpty();
     }
 
     @Override
@@ -39,6 +47,6 @@ public class IntArrayStack implements IntStack{
         // returns String representation of the stack
         // "[]" for empty stack
         // "[7, 8, 6]" for non-empty one (bottom-element-first)
-        return super.toString();
+        return array.toString();
     }
 }
